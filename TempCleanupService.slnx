@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TempCleanupService/TempCleanupService.csproj" />
+  <Project Path="TempCleanupService.Tests/TempCleanupService.Tests.csproj" />
+</Solution>
