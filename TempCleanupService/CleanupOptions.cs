@@ -5,7 +5,7 @@ public sealed class CleanupOptions
     public const string SectionName = "Cleanup";
     public const string AllUsersLocalTempToken = "{AllUsersLocalTemp}";
 
-    public double IntervalHours { get; set; } = 1;
+    public double IntervalHours { get; set; } = 0.5;
 
     public string[] TargetFolders { get; set; } =
     [
@@ -17,7 +17,7 @@ public sealed class CleanupOptions
     {
         return IntervalHours > 0
             ? TimeSpan.FromHours(IntervalHours)
-            : TimeSpan.FromHours(1);
+            : TimeSpan.FromMinutes(30);
     }
 
     public IReadOnlyList<string> GetExpandedTargetFolders(

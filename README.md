@@ -9,7 +9,7 @@ Edit `TempCleanupService/appsettings.json` before publishing or edit the deploye
 ```json
 {
   "Cleanup": {
-    "IntervalHours": 1,
+    "IntervalHours": 0.5,
     "TargetFolders": [
       "{AllUsersLocalTemp}",
       "C:\\Windows\\Temp"
@@ -18,7 +18,7 @@ Edit `TempCleanupService/appsettings.json` before publishing or edit the deploye
 }
 ```
 
-- `IntervalHours` controls how often cleanup runs. The default is `1`.
+- `IntervalHours` controls how often cleanup runs. The default is `0.5` (30 minutes).
 - `{AllUsersLocalTemp}` discovers real Windows user profiles at runtime and cleans each existing `AppData\\Local\\Temp` folder.
 - `TargetFolders` also supports explicit paths and Windows environment variables.
 - Windows service profiles such as `LocalSystem`, `LocalService`, and `NetworkService` are excluded from user-temp discovery.

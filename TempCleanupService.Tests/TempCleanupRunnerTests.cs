@@ -6,6 +6,12 @@ namespace TempCleanupService.Tests;
 public sealed class TempCleanupRunnerTests
 {
     [Fact]
+    public void CleanupOptions_DefaultIntervalIsThirtyMinutes()
+    {
+        Assert.Equal(TimeSpan.FromMinutes(30), new CleanupOptions().GetInterval());
+    }
+
+    [Fact]
     public async Task CleanAsync_DeletesFilesAndNestedFolders()
     {
         using var testFolder = new TempFolder();
