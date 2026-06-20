@@ -11,7 +11,7 @@ Edit `TempCleanupService/appsettings.json` before publishing or edit the deploye
   "Cleanup": {
     "IntervalHours": 1,
     "TargetFolders": [
-      "%LOCALAPPDATA%\\Temp",
+      "C:\\Users\\Sumit\\AppData\\Local\\Temp",
       "C:\\Windows\\Temp"
     ]
   }
@@ -19,7 +19,7 @@ Edit `TempCleanupService/appsettings.json` before publishing or edit the deploye
 ```
 
 - `IntervalHours` controls how often cleanup runs. The default is `1`.
-- `TargetFolders` supports Windows environment variables such as `%LOCALAPPDATA%`.
+- `TargetFolders` supports environment variables, but a service running as `LocalSystem` resolves `%LOCALAPPDATA%` to the system profile. Use an explicit user path such as `C:\\Users\\Sumit\\AppData\\Local\\Temp` to clean that user's temp folder.
 - Locked or in-use files/folders are logged and retried on the next interval.
 
 ## Local Run
