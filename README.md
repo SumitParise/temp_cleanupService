@@ -35,8 +35,10 @@ Stop with `Ctrl+C`.
 ## Publish
 
 ```powershell
-dotnet publish .\TempCleanupService\TempCleanupService.csproj -c Release -r win-x64 --self-contained false -o .\publish
+dotnet publish .\TempCleanupService\TempCleanupService.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\publish
 ```
+
+This creates a self-contained Windows package, so the destination computer does not need a separate .NET 10 installation.
 
 ## Install As Windows Service
 
