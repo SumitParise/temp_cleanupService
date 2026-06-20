@@ -84,6 +84,30 @@ public sealed class TempCleanupRunnerTests
         Assert.EndsWith("cleanup-service-test", folders[0]);
     }
 
+    [Fact]
+    public void CleanupOptions_ResolvesAllUsersLocalTempAtRuntime()
+    {
+        var firstUserTemp = Path.GetFullPath(Path.Combine("profiles", "first", "Temp"));
+        var secondUserTemp = Path.GetFullPath(Path.Combine("profiles", "second", "Temp"));
+        var options = new CleanupOptions
+        {
+            TargetFolders =
+            [
+                CleanupOptions.AllUsersLocalTempToken,
+                "%TEMP%"
+            ]
+        };
+
+        var folders = options.GetExpandedTargetFolders([firstUserTemp, secondUserTemp]);
+
+        Assert.Equal(3, folders.Count);
+        Assert.Contains(firstUserTemp, folders);
+        Assert.Contains(secondUserTemp, folders);
+        Assert.Contains(
+            Path.GetFullPath(Path.GetTempPath()).TrimEnd(Path.DirectorySeparatorChar),
+            folders);
+    }
+
     private static TempCleanupRunner CreateRunner(string targetFolder)
     {
         var options = Options.Create(new CleanupOptions
